@@ -127,6 +127,7 @@ class HBNBCommand(cmd.Cmd):
         tokens = tokens[1:]
         params = {}
 
+        new_instance = HBNBCommand.classes[class_name]()
         for token in tokens:
             key_value = token.split('=')
             if len(key_value) != 2:
@@ -146,10 +147,8 @@ class HBNBCommand(cmd.Cmd):
                 pass
 
             # store the key, value pair in the params
-            params[key] = value
 
-        new_instance = HBNBCommand.classes[class_name](**params)
-
+            setattr(new_instance, key, value)
         storage.save()
         print(new_instance.id)
 
