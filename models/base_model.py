@@ -15,11 +15,18 @@ class BaseModel:
             self.updated_at = datetime.now()
             storage.new(self)
         else:
-            kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
+            if not hasattr(kwargs, 'updated_at'):
+                kwargs['updated_at'] = datetime.now()
+                kwargs['created_at'] = datetime.now()
+            else:
+                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
                                                      '%Y-%m-%dT%H:%M:%S.%f')
-            kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
                                                      '%Y-%m-%dT%H:%M:%S.%f')
-            del kwargs['__class__']
+            if '__class__' in kwargs:
+                del kwargs['__class__']
+            if not hasattr(kwargs, 'id'):
+                kwargs['id'] = str(uuid.uuid4())
             self.__dict__.update(kwargs)
 
     def __str__(self):
