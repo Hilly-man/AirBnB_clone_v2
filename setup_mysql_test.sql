@@ -14,10 +14,13 @@ WHERE user = 'hbnb_test';
 
 
 -- If the user doesnt exist, create it and grant privileges
-CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'hbnb_test_pwd';
+CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'CHUrabrady123?';
 
 -- Grant privileges to the user hbnb_test on hbnb_test_db
 GRANT ALL PRIVILEGES ON hbnb_test_db.* TO 'hbnb_test'@'localhost';
+
+-- Grant SELECT privilege to the user hbnb_test on performance_schema
+GRANT SELECT ON performance_schema.* TO 'hbnb_test'@'localhost';
 
 -- Flush privileges to apply changes
 FLUSH PRIVILEGES;
