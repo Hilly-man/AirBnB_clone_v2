@@ -14,7 +14,7 @@ WHERE user = 'hbnb_test';
 
 
 -- If the user doesnt exist, create it and grant privileges
-CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'CHUrabrady123?';
+CREATE USER IF NOT EXISTS 'hbnb_test'@'localhost' IDENTIFIED BY 'hbnb_test_db';
 
 -- Grant privileges to the user hbnb_test on hbnb_test_db
 GRANT ALL PRIVILEGES ON hbnb_test_db.* TO 'hbnb_test'@'localhost';
